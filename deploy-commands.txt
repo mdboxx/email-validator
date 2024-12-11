@@ -1,0 +1,27 @@
+# Make the script executable:
+chmod +x deploy.sh
+
+# Run the script:
+sudo ./deploy.sh
+
+# After deployment, you can use these commands:
+
+# View application logs:
+pm2 logs
+
+# Monitor application:
+pm2 monit
+
+# View Nginx logs:
+sudo tail -f /var/log/nginx/access.log
+sudo tail -f /var/log/nginx/error.log
+
+# Restart application:
+pm2 restart all
+
+# Update application:
+cd /var/www/email-validator
+git pull
+npm install
+npm run build
+pm2 restart all

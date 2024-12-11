@@ -1,0 +1,21 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 50
+      name: "Ramp up load"
+    - duration: 300
+      arrivalRate: 50
+      name: "Sustained load"
+
+scenarios:
+  - name: "Validate emails"
+    flow:
+      - post:
+          url: "/api/validate/email"
+          json:
+            email: "test@example.com"
+          expect:
+            - statusCode: 200
+            - contentType: "application/json"

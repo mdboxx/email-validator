@@ -1,0 +1,1 @@
+export { EmailValidationService } from './service.js';
